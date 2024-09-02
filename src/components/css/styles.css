@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+}
+.exceptleftbar{
+    padding-left: 13vw;
+}
+.nav{
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 20px;
+    font-size: 23px;
+    border-bottom: 3px solid #f5f3f3ec;
+}
+.search input{
+    width: 40vmin;
+    background-color: #f5f3f3b3;
+    border: 2px transparent;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 17px;
+}
+.search i{
+    font-size: 16px;
+    position: absolute;
+    left: 320px;
+    top: 32px;
+    color: #0a2a59;
+}
+.icons{
+    position: absolute;
+    right: 10px;
+    color: #5f5a5a;
+}
+.icons i{
+    margin: 20px;
+}
+.body{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    font-size: 18px;
+}
+.left{
+    padding: 20px;
+    width: 75vw;
+}
+.left .location p{
+    color: #929191;
+}
+.left .location h3{
+    font-size: 26px;
+}
+.locationCards{
+    height: 32vh;
+    margin-top: 10px;
+    display: flex;
+}
+.card{
+    padding: 50px;
+    border-radius: 20px;
+}
+.card.active{
+    width: 38%;
+    margin-right: 6vw;
+    background-color: #929191;
+}
+.card.new{
+    width: 10%;
+    background-color: #929191;
+}
+.highlights{
+    margin-top: 28px;
+}
+.highlights h3{
+    margin-bottom: 16px;
+}
+.highlights .cards{
+    display: flex;
+    gap: 27px;
+    margin-right: 19vw;
+}
+.highlights .child{
+    border: 1px solid #cdcdcd;
+    border-radius: 10px;
+    width: 6vw;
+    padding: 26px;
+    position: relative;
+    text-align: center;
+}
+.cards .child.suntimings{
+    width: 18vw;
+}
+.cards .child .content{
+    font-size: 16px;
+    color: #929191;
+    position: absolute;
+    left: 5px;
+    top: 2px;
+}
+.cards .child .value{
+    font-size: 20px;
+    font-weight: 700;
+}
+.highlights .graph{
+    border: 1px solid #cdcdcd;
+    border-radius: 10px;
+    margin-top: 10px;
+    height: 24vh;
+    width: 56vw;
+}
+.right{
+    position: absolute;
+    right: 0px;
+    background-color: #ecf4ff;
+    height: 89vh;
+}
+.rain{
+    border-bottom: 5px solid #cdcdcd;
+    padding-top: 2px;
+    padding-left: 20px;
+    padding-bottom: 42vh;
+}
+.forecast{
+    padding-top: 2px;
+    padding-left: 20px;
+    padding-right: 280px;
+}
+.leftbar{
+    position: fixed;
+    width: 192px;
+    height: 100vh;
+    background-color: #0a2a59;
+}
+.leftbar ul{
+    color: #cdcdcd;
+    font-size: 20px;
+    padding-left: 30px;
+    position: absolute;
+    top: 100px;
+}
+.leftbar ul li{
+    list-style: none;
+    margin-bottom: 40px;
+}
