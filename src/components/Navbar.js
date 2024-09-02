@@ -1,14 +1,15 @@
-export default function Navbar(){
+export default function Navbar({search,setSearch}){
     return(
         <div className="nav">
             <div className="search">
-                <input type="text" placeholder="Search here..."></input>
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Search here..." onChange={(event)=>setSearch(event.target.value)}></input>
+                <i className="fa-solid fa-magnifying-glass"></i>
             </div>
             <div className="icons">
-                <i class="fa-regular fa-bell"></i>
-                <i class="fa-regular fa-user"></i>
-                <i class="fa-solid fa-headphones"></i>
+                {/* <li>{search}</li> */}
+                <i className="fa-regular fa-user"></i>
+                <i className="fa-regular fa-bell"></i>
+                <i className="fa-solid fa-headphones"></i>
             </div>
         </div>
     );
