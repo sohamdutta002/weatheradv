@@ -1,4 +1,4 @@
-export default function Body({city}){
+export default function Body({city,image,weatherImg}){
     let timeDisplay="";
     let dateDisplay="";
     if(city&&city.location){
@@ -23,9 +23,11 @@ export default function Body({city}){
                             <h3>{city.location.name}, {city.location.region}, {city.location.country}</h3>
                         </div>
                         <div className="locationCards">
-                            <div className="card active">
+                            <div className="card active"
+                                style={{background: `url(${image}) center center / cover no-repeat`}}
+                            >
                                 <div className="leftcard">
-                                    <img src={city.current.condition.icon}></img>
+                                    <img src={city.current.condition.icon} alt='Weather Condition'></img>
                                     {city.current.temp_c}&deg;C
                                 </div>
                                 <div className="rightcard">
@@ -34,7 +36,9 @@ export default function Body({city}){
                                     <div className="condition">{city.current.condition.text}</div>
                                 </div>
                             </div>
-                            <div className="card new">
+                            <div className="card new"
+                                style={{background: `url(${weatherImg}) center center / cover no-repeat`}}
+                            >
                                 <div className="head">Feels Like :</div>
                                 <div className="val">{city.current.feelslike_c}&deg;C</div> 
                                 <div className="head">UV :</div>
@@ -62,7 +66,8 @@ export default function Body({city}){
                                 </div>
                                 <div className="child suntimings">
                                     <p className="content">Sunrise & Sunset</p>
-                                    <p className="value"><i class="fa-solid fa-arrow-up"></i>  {city.forecast.forecastday[0].astro.sunrise}     <i class="fa-solid fa-arrow-down"></i>  {city.forecast.forecastday[0].astro.sunset}</p>
+                                    <p className="value"><i className="fa-solid fa-arrow-up"></i>  {city.forecast.forecastday[0].astro.sunrise}  
+                                       <i className="fa-solid fa-arrow-down"></i>  {city.forecast.forecastday[0].astro.sunset}</p>
                                 </div>
                             </div>
                             <div className="graph">

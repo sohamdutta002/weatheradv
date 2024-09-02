@@ -1,24 +1,47 @@
 import { useEffect, useState } from "react";
+import {createClient} from "pexels";
 import './css/styles.css'
 import Navbar from './Navbar';
 import Body from './Body';
 import Leftbar from './Leftbar';
 
 function Weather(){
+    const[activeImg,setActiveimg]=useState(null);
+    const[weatherImg,setWeatherimg]=useState(null);
     const[city,setCity]=useState(null);
     const[search,setSearch]=useState('Kolkata');
     useEffect(()=>{
         const fetchApi=async ()=>{
-            const Api_key='77dcdd1ce333466487d140819231809';
-            const url=`https://api.weatherapi.com/v1/forecast.json?key=${Api_key}&q=${search}&days=3&aqi=yes&alerts=no`;
+            const Api_keyW='77dcdd1ce333466487d140819231809';
+            const Api_keyImg='4qPlxbEd2pSbR7nWwBnhcCLyCS9i8qJ8S72q9YfYFxPJ6tjmyh8KgSja';
+            const url=`https://api.weatherapi.com/v1/forecast.json?key=${Api_keyW}&q=${search}&days=3&aqi=yes&alerts=no`;
             const response=await(await fetch(url)).json();
-            console.log(response);
             if(response.error){
                 setCity(null);
                 console.log(response.length);
                 return;
             }
             setCity(response);
+            const client=createClient(Api_keyImg);
+            let query=search;
+            const orientation='landscape';
+            client.photos.search({query,per_page:1,orientation}).then(photos=>{
+                // console.log(photos.photos[0].src.large);
+                setActiveimg(photos.photos[0].src.large);
+            });
+            if(city&&city.current){
+                let weatherQuery='';
+                console.log(weatherQuery);
+                if(city.current.is_day===0)
+                    weatherQuery='night-sky';
+                else
+                    weatherQuery='day-sky';
+                console.log(weatherQuery);
+                client.photos.search({query:weatherQuery,per_page:1,orientation}).then(photos=>{
+                    console.log(photos.photos[0].src.large);
+                    setWeatherimg(photos.photos[0].src.large);
+                });
+            }
         };
         fetchApi();
     },[search])
@@ -29,7 +52,7 @@ function Weather(){
             <Leftbar />
             <div className='exceptleftbar'>
                 <Navbar search={search} setSearch={setSearch}/>
-                <Body city={city}/>
+                <Body city={city} image={activeImg} weatherImg={weatherImg}/>
             </div>
         </>
     );
