@@ -37,7 +37,10 @@ function Weather(){
                 if(city&&city.forecast){
                     setHourlyData(city.forecast.forecastday[0].hour);
                     // console.log(hourlyData);
-                    triday=city.forecast.forecastday.map(forecast=>forecast.day);
+                    triday=city.forecast.forecastday.map(forecast=>({
+                        date:forecast.date,
+                        day:forecast.day
+                    }));
                     setTridayData(triday);
                     // console.log(triday);
                 }

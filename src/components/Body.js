@@ -3,6 +3,7 @@ import TemperatureGraph from "./TemperatureGraph";
 export default function Body({city,image,weatherImg,hourlyData,tridayData}){
     let timeDisplay="";
     let dateDisplay="";
+    // console.log(tridayData);
     if(city&&city.location){
         const date=city.location.localtime.split(" ")[0];
         let [y,m,d]=date.split("-").map(String);
@@ -91,6 +92,47 @@ export default function Body({city,image,weatherImg,hourlyData,tridayData}){
                         </div>
                         <div className="forecast">
                             <p>3 Days Forecast</p>
+                            {!tridayData ? <>Enter location to find data</>
+                                :   (
+                                    <div className="days">
+                                        <div className="day">
+                                            <div className="temp"><i className="fa-solid fa-arrow-up"></i>{tridayData[0].day.maxtemp_c} <i className="fa-solid fa-arrow-down"></i>{tridayData[0].day.mintemp_c}</div>
+                                            <div className="weatherimg">
+                                                <img src={tridayData[0].day.condition.icon} alt="weatherpng"></img>
+                                            </div>
+                                            <div className="date">
+                                                <div className="inner">
+                                                    {tridayData[0].date}
+                                                </div>
+                                                {tridayData[0].day.condition.text}
+                                            </div>
+                                        </div>
+                                        <div className="day">
+                                            <div className="weatherimg">
+                                                <img src={tridayData[1].day.condition.icon} alt="weatherpng"></img>
+                                            </div>
+                                            <div className="date">
+                                                <div className="inner">
+                                                    {tridayData[1].date}
+                                                </div>
+                                                {tridayData[1].day.condition.text}
+                                            </div>
+                                            <div className="temp"><i className="fa-solid fa-arrow-up"></i>{tridayData[1].day.maxtemp_c} <i className="fa-solid fa-arrow-down"></i>{tridayData[1].day.mintemp_c}</div>
+                                        </div>
+                                        <div className="day">
+                                            <div className="temp"><i className="fa-solid fa-arrow-up"></i>{tridayData[2].day.maxtemp_c} <i className="fa-solid fa-arrow-down"></i>{tridayData[2].day.mintemp_c}</div>
+                                            <div className="weatherimg">
+                                                <img src={tridayData[2].day.condition.icon} alt="weatherpng"></img>
+                                            </div>
+                                            <div className="date">
+                                                <div className="inner">
+                                                    {tridayData[2].date}
+                                                </div>
+                                                {tridayData[2].day.condition.text}
+                                            </div>
+                                        </div>
+                                    </div>
+                                )}
                         </div>
                     </div>
                 </>

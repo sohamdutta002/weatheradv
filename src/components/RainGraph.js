@@ -44,7 +44,6 @@ export default function RainGraph({hourlyData}){
             }
         ],
     };
-    console.log(data.labels);
     const options={
         indexAxis:'y',
         plugins:{
