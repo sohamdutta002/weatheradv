@@ -4,7 +4,7 @@
     font-family:'Times New Roman', Times, serif;
 }
 .exceptleftbar{
-    padding-left: 13vw;
+    padding-left: 15vw;
 }
 .nav{
     display: flex;
@@ -65,7 +65,7 @@
 }
 .card.active{
     width: 37%;
-    margin-right: 6vw;
+    margin-right: 3vw;
     display: flex;
     justify-content: space-between;
     align-items:flex-start;
@@ -87,7 +87,7 @@
     color: #e9e8e8;
 }
 .card.new{
-    width: 10%;
+    width: 13%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -113,8 +113,8 @@
 .highlights .child{
     border: 1px solid #cdcdcd;
     border-radius: 10px;
-    width: 6vw;
-    padding: 22px;
+    width: 5vw;
+    padding: 23px;
     display: flex;
     flex-direction: column;
     justify-content:space-between;
@@ -149,9 +149,10 @@
 .highlights .graph{
     border: 1px solid #cdcdcd;
     border-radius: 10px;
-    margin-top: 10px;
+    padding: 6px;
+    margin-top: 9px;
     height: 24vh;
-    width: 56vw;
+    width: 48vw;
 }
 .right{
     position: absolute;
@@ -168,11 +169,11 @@
 .forecast{
     padding-top: 2px;
     padding-left: 20px;
-    padding-right: 280px;
+    padding-right: 358px;
 }
 .leftbar{
     position: fixed;
-    width: 193px;
+    width: 222px;
     height: 100vh;
     background-color: #0a2a59;
 }

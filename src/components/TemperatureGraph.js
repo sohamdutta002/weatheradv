@@ -8,6 +8,7 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
+import { callback } from 'chart.js/helpers';
 
 import { Line } from 'react-chartjs-2';
 
@@ -32,6 +33,7 @@ export default function TemperatureGraph({hourlyData}){
                 borderColor: 'rgba(143, 29, 225, 0.843)',
                 borderWidth: 2,
                 tension: 0.5,
+                pointBackgroundColor: 'rgb(255, 255, 255)',
             },
         ],
     };
@@ -50,6 +52,11 @@ export default function TemperatureGraph({hourlyData}){
                 title:{
                     display: false,
                 },
+                ticks:{
+                    callback: function(value,index){
+                        return (index%3===0)?((index<=12)?value+"am":value%12+"pm"):' ';
+                    }
+                }
             },
             y:{
                 display: false,
@@ -60,5 +67,5 @@ export default function TemperatureGraph({hourlyData}){
         },
     };
     
-    return <Line data={data} options={options} width={700}/>;
+    return <Line data={data} options={options} width={650} />;
 }
