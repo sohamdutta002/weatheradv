@@ -7,9 +7,10 @@ import Leftbar from './Leftbar';
 
 function Weather(){
     const[activeImg,setActiveimg]=useState(null);
-    const[weatherImg,setWeatherimg]=useState(null);
+    const[weatherImg,setWeatherimg]=useState('https://s7d2.scene7.com/is/image/TWCNews/clouds_from_above');
     const[city,setCity]=useState(null);
     const[search,setSearch]=useState('Kolkata');
+    const[hourlyData,setHourlyData]=useState(null);
     useEffect(()=>{
         const fetchApi=async ()=>{
             const Api_keyW='77dcdd1ce333466487d140819231809';
@@ -29,16 +30,21 @@ function Weather(){
                 // console.log(photos.photos[0].src.large);
                 setActiveimg(photos.photos[0].src.large);
             });
+            // console.log(weatherImg);
             if(city&&city.current){
+                if(city&&city.forecast){
+                    setHourlyData(city.forecast.forecastday[0].hour);
+                    console.log(hourlyData);
+                }
                 let weatherQuery='';
-                console.log(weatherQuery);
+                // console.log(weatherQuery);
                 if(city.current.is_day===0)
                     weatherQuery='night-sky';
                 else
-                    weatherQuery='day-sky';
-                console.log(weatherQuery);
+                    weatherQuery='day';
+                // console.log(weatherQuery);
                 client.photos.search({query:weatherQuery,per_page:1,orientation}).then(photos=>{
-                    console.log(photos.photos[0].src.large);
+                    // console.log(photos.photos[0].src.large);
                     setWeatherimg(photos.photos[0].src.large);
                 });
             }
@@ -52,7 +58,7 @@ function Weather(){
             <Leftbar />
             <div className='exceptleftbar'>
                 <Navbar search={search} setSearch={setSearch}/>
-                <Body city={city} image={activeImg} weatherImg={weatherImg}/>
+                <Body city={city} image={activeImg} weatherImg={weatherImg} hourlyData={hourlyData}/>
             </div>
         </>
     );

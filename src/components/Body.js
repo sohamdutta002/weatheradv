@@ -1,4 +1,5 @@
-export default function Body({city,image,weatherImg}){
+import TemperatureGraph from "./TemperatureGraph";
+export default function Body({city,image,weatherImg,hourlyData}){
     let timeDisplay="";
     let dateDisplay="";
     if(city&&city.location){
@@ -66,13 +67,17 @@ export default function Body({city,image,weatherImg}){
                                 </div>
                                 <div className="child suntimings">
                                     <p className="content">Sunrise & Sunset</p>
-                                    <p className="value"><i className="fa-solid fa-arrow-up"></i>  {city.forecast.forecastday[0].astro.sunrise}  
-                                       <i className="fa-solid fa-arrow-down"></i>  {city.forecast.forecastday[0].astro.sunset}</p>
+                                    <p className="value"> <span className="arrow"><i className="fa-solid fa-arrow-up"></i></span>  {city.forecast.forecastday[0].astro.sunrise}  
+                                       <span className="arrow"><i className="fa-solid fa-arrow-down"></i></span> {city.forecast.forecastday[0].astro.sunset}</p>
                                 </div>
                             </div>
                             <div className="graph">
                                     <p className="active">Today</p>
-                                    <p>Week</p>
+                                    {!hourlyData ? <>Search a city to find graph</>
+                                        :   (
+                                            <TemperatureGraph hourlyData={hourlyData} />
+                                        )
+                                    }
                             </div>
                         </div>
                     </div>
