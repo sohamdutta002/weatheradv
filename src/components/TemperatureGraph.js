@@ -62,6 +62,7 @@ export default function TemperatureGraph({hourlyData}){
                 grid:{
                     display:false,
                 },
+                suggestedMin:0,
             },
         },
     };

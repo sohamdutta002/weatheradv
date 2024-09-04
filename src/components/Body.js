@@ -4,6 +4,8 @@ export default function Body({city,image,weatherImg,hourlyData,tridayData}){
     let timeDisplay="";
     let dateDisplay="";
     // console.log(tridayData);
+    // console.log(image);
+    // console.log(weatherImg);
     if(city&&city.location){
         const date=city.location.localtime.split(" ")[0];
         let [y,m,d]=date.split("-").map(String);
@@ -49,7 +51,7 @@ export default function Body({city,image,weatherImg,hourlyData,tridayData}){
                                 <div className="head">Visiblity :</div>
                                 <div className="val">{city.current.vis_km} km</div> 
                                 <div className="head">PM2.5 :</div>
-                                <div className="val">{city.current.air_quality.pm2_5}&deg;C</div> 
+                                <div className="val">{city.current.air_quality.pm2_5}</div> 
                             </div>
                         </div>
                         <div className="highlights">

@@ -29,7 +29,8 @@ function Weather(){
             const orientation='landscape';
             client.photos.search({query,per_page:1,orientation}).then(photos=>{
                 // console.log(photos.photos[0].src.large);
-                setActiveimg(photos.photos[0].src.large);
+                if(photos&&photos.photos[0])
+                    setActiveimg(photos.photos[0].src.large);
             });
             // console.log(weatherImg);
             let triday='';
@@ -46,15 +47,17 @@ function Weather(){
                 }
                 let weatherQuery='';
                 // console.log(weatherQuery);
-                if(city.current.is_day===0)
-                    weatherQuery='night-sky';
-                else
-                    weatherQuery='day';
-                // console.log(weatherQuery);
-                client.photos.search({query:weatherQuery,per_page:1,orientation}).then(photos=>{
-                    // console.log(photos.photos[0].src.large);
-                    setWeatherimg(photos.photos[0].src.large);
-                });
+                if(city.current.is_day){
+                    if(city.current.is_day===0)
+                        weatherQuery='night-sky';
+                    else
+                        weatherQuery='day';
+                    // console.log(weatherQuery);
+                    client.photos.search({query:weatherQuery,per_page:1,orientation}).then(photos=>{
+                        // console.log(photos.photos[0].src.large);
+                        setWeatherimg(photos.photos[0].src.large);
+                    });
+                }
             }
         };
         fetchApi();

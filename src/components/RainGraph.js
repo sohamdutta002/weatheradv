@@ -53,6 +53,9 @@ export default function RainGraph({hourlyData}){
         },
         scales:{
             y:{
+                border:{
+                    display:false,
+                },
                 grid:{
                     display:false,
                     drawBorder:false,
@@ -66,6 +69,9 @@ export default function RainGraph({hourlyData}){
             x:{
                 min:0,
                 max:10,
+                border:{
+                    display:false,
+                },
                 grid:{
                     display:false,
                     drawBorder:false,
@@ -87,5 +93,5 @@ export default function RainGraph({hourlyData}){
             },
         }
     };
-    return <Bar data={data} options={options} height={220}/>;
+    return <Bar data={data} options={options} height={240}/>;
 }
