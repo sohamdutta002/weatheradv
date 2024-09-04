@@ -1,5 +1,6 @@
+import RainGraph from "./RainGraph";
 import TemperatureGraph from "./TemperatureGraph";
-export default function Body({city,image,weatherImg,hourlyData}){
+export default function Body({city,image,weatherImg,hourlyData,tridayData}){
     let timeDisplay="";
     let dateDisplay="";
     if(city&&city.location){
@@ -84,6 +85,9 @@ export default function Body({city,image,weatherImg,hourlyData}){
                     <div className="right">
                         <div className="rain">
                             <p>Chance of Rain</p>
+                            {!hourlyData ? <p>Data not available</p> : (
+                                <RainGraph hourlyData={hourlyData} />
+                            )}
                         </div>
                         <div className="forecast">
                             <p>3 Days Forecast</p>

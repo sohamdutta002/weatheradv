@@ -162,9 +162,8 @@
 }
 .rain{
     border-bottom: 5px solid #cdcdcd;
-    padding-top: 2px;
-    padding-left: 20px;
-    padding-bottom: 42vh;
+    padding-top: 1px;
+    padding-left: 10px;
 }
 .forecast{
     padding-top: 2px;

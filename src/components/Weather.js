@@ -11,6 +11,7 @@ function Weather(){
     const[city,setCity]=useState(null);
     const[search,setSearch]=useState('Kolkata');
     const[hourlyData,setHourlyData]=useState(null);
+    const[tridayData,setTridayData]=useState(null);
     useEffect(()=>{
         const fetchApi=async ()=>{
             const Api_keyW='77dcdd1ce333466487d140819231809';
@@ -31,10 +32,14 @@ function Weather(){
                 setActiveimg(photos.photos[0].src.large);
             });
             // console.log(weatherImg);
+            let triday='';
             if(city&&city.current){
                 if(city&&city.forecast){
                     setHourlyData(city.forecast.forecastday[0].hour);
-                    console.log(hourlyData);
+                    // console.log(hourlyData);
+                    triday=city.forecast.forecastday.map(forecast=>forecast.day);
+                    setTridayData(triday);
+                    // console.log(triday);
                 }
                 let weatherQuery='';
                 // console.log(weatherQuery);
@@ -58,7 +63,7 @@ function Weather(){
             <Leftbar />
             <div className='exceptleftbar'>
                 <Navbar search={search} setSearch={setSearch}/>
-                <Body city={city} image={activeImg} weatherImg={weatherImg} hourlyData={hourlyData}/>
+                <Body city={city} image={activeImg} weatherImg={weatherImg} hourlyData={hourlyData} tridayData={tridayData}/>
             </div>
         </>
     );

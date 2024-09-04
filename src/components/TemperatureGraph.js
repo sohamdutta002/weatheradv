@@ -8,7 +8,6 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
-import { callback } from 'chart.js/helpers';
 
 import { Line } from 'react-chartjs-2';
 
@@ -37,7 +36,7 @@ export default function TemperatureGraph({hourlyData}){
             },
         ],
     };
-    console.log(data);
+    // console.log(data);
     const options={
         plugins:{
             legend:{
