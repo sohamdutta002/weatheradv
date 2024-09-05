@@ -1,70 +1,124 @@
-# Getting Started with Create React App
+# Weather Forecast Visualization
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project visualizes weather forecast data using a React application with Chart.js. The application displays weather data, such as temperature and precipitation, in interactive bar and line charts.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Features](#features)
+- [Customization](#customization)
+- [License](#license)
 
-### `npm start`
+## Installation
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To set up the project locally, follow these steps:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. **Clone the repository:**
 
-### `npm test`
+   ```bash
+   git clone https://github.com/your-username/weather-forecast-visualization.git
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. **Navigate to the project directory:**
 
-### `npm run build`
+   ```bash
+   cd weather-forecast-visualization
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. **Install the dependencies:**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   Make sure you have Node.js and npm installed. Then run:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+   ```bash
+   npm install
+   ```
 
-### `npm run eject`
+4. **Start the development server:**
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+   ```bash
+   npm start
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   This command will start the application and open it in your default browser at `http://localhost:3000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Usage
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+The application fetches weather data and visualizes it using different chart types. The key components include:
 
-## Learn More
+- **RainGraph**: Displays a bar chart of precipitation data.
+- **TemperatureGraph**: Displays a line chart of temperature data.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The graphs are interactive and provide a visual summary of the weather data.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+weather-forecast-visualization/
+├── public/
+│   ├── index.html
+│   └── ...
+├── src/
+│   ├── components/
+│   │   ├── RainGraph.js
+│   │   ├── TemperatureGraph.js
+│   │   └── ...
+│   ├── App.js
+│   ├── index.js
+│   └── ...
+├── README.md
+├── package.json
+└── ...
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **public/**: Contains the static assets and the HTML file.
+- **src/**: Contains the React components, main entry points, and other JavaScript files.
+- **components/**: Contains individual chart components like `RainGraph.js` and `TemperatureGraph.js`.
 
-### Analyzing the Bundle Size
+## Features
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Interactive Charts**: The application uses Chart.js to display interactive bar and line charts.
+- **Customizable Appearance**: The charts are styled with custom colors and settings.
+- **Dynamic Data**: The application fetches weather data dynamically and updates the charts in real time.
 
-### Making a Progressive Web App
+### RainGraph
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- Displays precipitation levels using a horizontal bar chart.
+- Colors bars differently based on precipitation intensity (e.g., sunny, rainy, heavy rain).
+- Provides axis labels with descriptive text.
 
-### Advanced Configuration
+### TemperatureGraph
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- Displays temperature over time using a line chart.
+- The area under the line is filled with color to represent temperature changes.
+- Points on the line are highlighted with customizable colors.
 
-### Deployment
+## Customization
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+You can customize the following aspects of the charts:
 
-### `npm run build` fails to minify
+- **Bar and Line Colors**: Adjust the `backgroundColor` and `borderColor` in the datasets.
+- **Grid Lines and Borders**: Toggle visibility and styling of grid lines and borders in the chart options.
+- **Axis Labels**: Customize the labels and ticks on both x and y axes.
+- **Tooltip Styling**: Modify the tooltip appearance for better clarity.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Example
+
+To change the color of bars in `RainGraph`, modify the `backgroundColor` property in the `datasets` array:
+
+```javascript
+const backgroundColors = hourlyData.map(hour => {
+    if (hour.precip_mm >= 9) {
+        return 'rgb(10, 42, 89)'; // Dark blue for heavy rain
+    }
+    if (hour.precip_mm >= 2) {
+        return 'rgba(111, 22, 174, 0.843)'; // Purple for rain
+    }
+    return 'rgba(143, 29, 225, 0.43)'; // Light purple for sunny
+});
+```
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
