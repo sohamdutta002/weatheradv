@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {createClient} from "pexels";
 import './css/styles.css'
 import Navbar from './Navbar';
@@ -12,6 +12,7 @@ function Weather(){
     const[search,setSearch]=useState('Kolkata');
     const[hourlyData,setHourlyData]=useState(null);
     const[tridayData,setTridayData]=useState(null);
+    const inp=useRef(null);
     useEffect(()=>{
         const fetchApi=async ()=>{
             const Api_keyW='77dcdd1ce333466487d140819231809';
@@ -65,13 +66,17 @@ function Weather(){
 
 
     return(
-        <>
-            <Leftbar />
-            <div className='exceptleftbar'>
-                <Navbar search={search} setSearch={setSearch}/>
+        <div className="full" style={{background: `url(${weatherImg}) center/cover no-repeat`}}>
+            <div className='weather'>
+                <div className="searchcenter">
+                    <div className="search">
+                        <input type="text" ref={inp} placeholder="Search here..."></input>
+                        <button onClick={()=>setSearch(inp.current.value)}><i className="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
                 <Body city={city} image={activeImg} weatherImg={weatherImg} hourlyData={hourlyData} tridayData={tridayData}/>
             </div>
-        </>
+        </div>
     );
 }
 
