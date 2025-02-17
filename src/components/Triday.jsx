@@ -3,7 +3,7 @@ import React from 'react'
 const Triday = ({tridayData}) => {
   return (
     <div className="forecast">
-        <p>3 Days Forecast</p>
+        <h3>3 Days Forecast</h3>
         {!tridayData ? <>Enter location to find data</>
             :   (
                 <div className="days">

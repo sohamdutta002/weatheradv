@@ -30,10 +30,6 @@ const Home = ({ city, tridayData, image }) => {
 
   return (
     <div className="locationCards">
-      <div
-        className="card active"
-        style={{ background: `url(${image}) center / cover no-repeat` }}
-      ></div>
       <div className="card new">
         <div className="leftcard">
           <div className="leftcardinner">
@@ -45,6 +41,10 @@ const Home = ({ city, tridayData, image }) => {
           <div className="time">{timeDisplay}</div>
         </div>
       </div>
+      <div
+        className="card activee"
+        style={{ background: `url(${image}) center / cover no-repeat` }}
+      ></div>
       <Triday tridayData={tridayData} />
     </div>
   );

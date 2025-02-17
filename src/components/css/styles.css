@@ -1,8 +1,20 @@
+@font-face {
+    font-family: 'Lat';
+    src: url('../../fonts/Latton.otf') format('openformat');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Alpha';
+    src: url('../../fonts/AlphaClouds.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 *{
     margin: 0;
     padding: 0;
-    font-family:'Times New Roman', Times, serif;
-    
+    font-family: 'Lat', sans-serif;
 }
 .full{
     height: 100vh;
@@ -20,8 +32,8 @@
     height: 80vh;
     padding: 20px;
     border-radius: 20px;
-    overflow-y: visible;
-    overflow-x: hidden;
+    overflow: hidden;
+    box-shadow: 10px 10px 10px #0000003b;
 }
 .searchcenter{
     display: flex;
@@ -33,12 +45,14 @@
     width: 40vw;
 }
 .search input{
+    font-family: 'Alpha', sans-serif;
     width: 100%;
     background-color: #f5f3f3b3;
     border: 2px solid black;
     border-radius: 8px;
     padding: 10px;
-    font-size: 17px;
+    font-size: 27px;
+    font-weight: 700;
 }
 .search i{
     font-size: 20px;
@@ -69,49 +83,44 @@
 }
 .btns{
     display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
     justify-content: space-around;
 }
 .btns button{
+    font-family: 'Alpha', sans-serif;
     background: none;
     border: none;
     cursor: pointer;
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 35px;
+    font-weight: 800;
     padding: 0 20px;
 }
 .active{
     border-bottom: black 2px solid !important;
 }
-.left{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    gap: 10px;
-}
-.left .location p{
-    color: #929191;
-}
-.left .location h3{
-    font-size: 26px;
-}
 .locationCards{
     height: 400px;
-    /* background: red; */
-    /* margin-top: 10px; */
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    /* gap: 30px; */
     justify-content: space-around;
+    overflow-y: auto;
 }
 .card{
     padding: 30px;
     border-radius: 20px;
     color: black;
 }
-.card.active{
+.card.activee{
     width:300px;
     height: 300px;
+    margin-top: 10px;
+    box-shadow: 0 10px 10px #0000003b;
+    transition: 300ms ease-in-out;
+}
+.card.activee:hover{
+    scale: 1.05;
 }
 .leftcard{
     font-size: 24px;
@@ -127,23 +136,38 @@
     align-items: center;
     font-size: 32px;
 }
-.leftcard .img{
-    /* margin-top: -20px; */
-}
 .condition{
     color: #3c3939;
 }
 .card.new{
     width: 30%;
     display: flex;
-    /* flex-direction: column; */
     justify-content: space-around;
     align-items: start;
 }
 .highlights{
-    /* margin-top: 16px; */
-    /* display: flex;
-    flex-direction: column; */
+    height: 400px;
+    overflow-y: auto;
+}
+@media screen and (max-width: 768px){
+    .highlights{
+        min-height: 60vh;
+    }
+    .locationCards{
+        min-height: 60vh;
+    }
+    .rain{
+        min-height: 60vh;
+    }
+    .days .day{
+        flex-direction: column;
+    }
+    .days .day .temp{
+        padding: 10px 0 !important;
+    }
+    .forecast{
+        height: 400px;
+    }
 }
 .highlights h3{
     font-size: 24px;
@@ -168,7 +192,7 @@
     align-items: center;
 }
 .cards .child.suntimings{
-    width: 17vw;
+    width: 300px;
 }
 .cards .child.suntimings .arrow{
     display: inline-flex;
@@ -179,7 +203,7 @@
     border-radius: 50%;
     width: 24px;
     height: 24px;
-    /* margin: 0 0 0 12px; */
+    margin: 0 0 0 12px;
 }
 .cards .child .content{
     font-size: 16px;
@@ -201,7 +225,11 @@
 .rain{
     border-bottom: 5px solid #cdcdcd;
     padding:30px;
-    height: 600px;
+    height: 400px;
+    overflow-y: auto;
+}
+.forecast{
+    margin-top: 40px;
 }
 .days{
     display: flex;

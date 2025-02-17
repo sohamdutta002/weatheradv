@@ -8,6 +8,8 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
+import { callback } from 'chart.js/helpers';
+import { intersect, mode } from 'mathjs';
 
 import { Line } from 'react-chartjs-2';
 
@@ -42,6 +44,20 @@ export default function TemperatureGraph({hourlyData}){
             legend:{
                 display:false,
             },
+            tooltip:{
+                callbacks:{
+                    label: function(item){
+                        return item.raw+' °C';
+                    }
+                }
+            }
+        },
+        elements: {
+            point: {
+                radius: 5, // Increases point size for better hover detection
+                hoverRadius: 8, // Increases hover area for better UX
+                hitRadius: 10, // Makes it easier to trigger the tooltip
+            }
         },
         scales:{
             x:{
