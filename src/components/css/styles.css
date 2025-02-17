@@ -67,6 +67,21 @@
     flex-direction: column;
     gap: 10px;
 }
+.btns{
+    display: flex;
+    justify-content: space-around;
+}
+.btns button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 0 20px;
+}
+.active{
+    border-bottom: black 2px solid !important;
+}
 .left{
     display: flex;
     flex-wrap: wrap;
@@ -169,41 +184,26 @@
 .cards .child .content{
     font-size: 16px;
     color: #929191;
-    /* margin-top: -24px; */
-    /* text-align: left; */
 }
 .cards .child .value{
     font-size: 20px;
     font-weight: 700;
-    /* margin-top: 4px; */
-    /* margin-bottom: -12px; */
 }
 .highlights .graph{
     border: 1px solid #cdcdcd;
     border-radius: 10px;
     padding: 12px;
     margin-top: 9px;
-    /* width: auto; */
 }
 .right{
-    /* position: absolute; */
-    /* right: 0px; */
     background-color: #ecf4ff;
-    /* height: 89vh; */
-    /* width: 31vw; */
 }
 .rain{
     border-bottom: 5px solid #cdcdcd;
-    /* padding-top: 1px; */
     padding:30px;
     height: 600px;
-    /* margin-bottom: 4px; */
 }
-/* .forecast{
-    padding-top: 2px;
-    padding-left: 10px;
-} */
-.forecast .days{
+.days{
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -213,43 +213,36 @@
     display:flex ;
     justify-content: space-between;
     border: 1px solid black;
-    border-radius: 4px;
-    height: 50px;
-    width: 300px;
-    padding: 4px;
+    border-radius: 16px;
 }
 .forecast .days .day .weatherimg{
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
-    margin-top: -4px;
-    margin-right: -16px;
 }
 .forecast .days .day .weatherimg img{
-    width: 100%;
-    height: 100%;
+    height: 65px;
 }
 .forecast .days .day .date{
     display: flex;
     flex-direction: column;
-    font-size: 14px;
-    padding: 6px;
+    font-size: 18px;
+    padding: 0 10px 0 0;
     font-weight: normal;
 }
 .forecast .days .day .date .inner{
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
 }
 .forecast .days .day .temp{
     display: flex;
     align-items: center;
+    justify-items: space-between;
     background-color: #8f1de1d7;
-    border-radius: 6px;
-    padding: 30px;
-    margin: -4px;
+    border-radius: 16px;
+    padding: 0 4px;
 }
-.forecast .days .day .temp i{
-    margin-left: 10px;
+.forecast .days .day .temp .arrw{
+    display: flex;
+    justify-content: space-around;
+    padding: 0 5px;
 }

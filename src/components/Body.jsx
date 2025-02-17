@@ -12,10 +12,10 @@ export default function Body({city,image,weatherImg,hourlyData,tridayData}){
                 <>Data not present</>
             ) : (
                 <div className="main">
-                        <div className="">
+                        <div className="btns">
                             <button onClick={()=>setActiveTab("Home")} className={activeTab==="Home"?"active":""}>Home</button>
                             <button onClick={()=>setActiveTab("Highlights")} className={activeTab==="Highlights"?"active":""}>Highlights</button>
-                            <button onClick={()=>setActiveTab("Rain Data")} className={activeTab==="Rain"?"active":""}>Rain Data</button>
+                            <button onClick={()=>setActiveTab("Rain Data")} className={activeTab==="Rain Data"?"active":""}>Rain Data</button>
                         </div>
                         <div className="location">
                             <p>Current Location</p>
