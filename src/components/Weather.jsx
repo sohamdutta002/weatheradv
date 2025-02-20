@@ -15,7 +15,7 @@ function Weather(){
         const fetchApi=async ()=>{
             const Api_keyW=process.env.REACT_APP_W;
             const Api_keyImg=process.env.REACT_APP_IMG;
-            console.log(Api_keyImg);
+            // console.log(Api_keyImg);
             const url=`https://api.weatherapi.com/v1/forecast.json?key=${Api_keyW}&q=${search}&days=3&aqi=yes&alerts=no`;
             const response=await(await fetch(url)).json();
             if(response.error){
