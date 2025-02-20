@@ -47,13 +47,13 @@ function Weather(){
                     // console.log(triday);
                 }
                 let weatherQuery='';
-                // console.log(weatherQuery);
-                if(city.current.is_day){
+                console.log(city.current.is_day);
+                if(city.current.is_day!=null){
                     if(city.current.is_day===0)
-                        weatherQuery='night-sky';
+                        weatherQuery='midnight sky';
                     else
                         weatherQuery='day';
-                    // console.log(weatherQuery);
+                    console.log(weatherQuery);
                     client.photos.search({query:weatherQuery,per_page:1,orientation}).then(photos=>{
                         // console.log(photos.photos[0].src.large);
                         setWeatherimg(photos.photos[0].src.large);
@@ -70,7 +70,11 @@ function Weather(){
             <div className='weather'>
                 <div className="searchcenter">
                     <div className="search">
-                        <input type="text" ref={inp} placeholder="Search here..."></input>
+                        <input type="text" ref={inp} onKeyDown={(e)=>{
+                            if(e.key==='Enter'){
+                                setSearch(inp.current.value);
+                            }
+                        }} placeholder="Search here..."></input>
                         <button onClick={()=>setSearch(inp.current.value)}><i className="fa-solid fa-magnifying-glass"></i></button>
                     </div>
                 </div>
