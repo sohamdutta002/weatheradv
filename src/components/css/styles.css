@@ -1,128 +1,198 @@
+@font-face {
+    font-family: 'Lat';
+    src: url('../../fonts/Latton.otf') format('openformat');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Alpha';
+    src: url('../../fonts/AlphaClouds.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 *{
     margin: 0;
     padding: 0;
-    font-family:'Times New Roman', Times, serif;
+    font-family: 'Lat', sans-serif;
+}
+.full{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     overflow: hidden;
 }
-.exceptleftbar{
-    padding-left: 16.7vw;
-}
-.nav{
+.weather{
     display: flex;
-    align-items: center;
-    position: relative;
+    flex-direction: column;
+    gap: 10px;
+    background: white;
+    width: 70vw;
+    height: 80vh;
     padding: 20px;
-    font-size: 23px;
-    border-bottom: 3px solid #f5f3f3ec;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 10px 10px 10px #0000003b;
+}
+.searchcenter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.search{
+    position: relative;
+    width: 40vw;
 }
 .search input{
-    width: 40vmin;
+    font-family: 'Alpha', sans-serif;
+    width: 100%;
     background-color: #f5f3f3b3;
-    border: 2px transparent;
+    border: 2px solid black;
     border-radius: 8px;
     padding: 10px;
-    font-size: 17px;
+    font-size: 27px;
+    font-weight: 700;
 }
 .search i{
-    font-size: 16px;
+    font-size: 20px;
     position: absolute;
-    left: 320px;
-    top: 32px;
+    right: 1px;
+    top: 12px;
     color: #0a2a59;
+    cursor: pointer;
 }
-.icons{
-    position: absolute;
-    right: 10px;
-    color: #5f5a5a;
-}
-.icons i{
-    margin: 13px;
+@media screen and (max-width: 768px){
+    .weather{
+        width: 90vw;
+        height:90vh;
+    }
+    .search{
+        width: 80vw;
+    }
 }
 .body{
-    display: flex;
-    position: relative;
-    flex-direction: column;
     font-size: 18px;
+    display: flex;
+    flex-direction: column;
 }
-.left{
-    padding: 20px;
-    width: 75vw;
+.main{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
-.left .location p{
-    color: #929191;
+.btns{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: space-around;
 }
-.left .location h3{
-    font-size: 26px;
+.btns button{
+    font-family: 'Alpha', sans-serif;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 35px;
+    font-weight: 800;
+    padding: 0 20px;
+}
+.active{
+    border-bottom: black 2px solid !important;
 }
 .locationCards{
-    height: 32vh;
-    margin-top: 10px;
+    height: 400px;
     display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    overflow-y: auto;
 }
 .card{
     padding: 30px;
     border-radius: 20px;
-    color: #fff;
+    color: black;
 }
-.card.active{
-    width: 37%;
-    margin-right: 3vw;
-    display: flex;
-    justify-content: space-between;
-    align-items:flex-start;
+.card.activee{
+    width:300px;
+    height: 300px;
+    margin-top: 10px;
+    box-shadow: 0 10px 10px #0000003b;
+    transition: 300ms ease-in-out;
+}
+.card.activee:hover{
+    scale: 1.05;
 }
 .leftcard{
-    font-size: 38px;
+    font-size: 24px;
     font-weight: 1000;
     display: flex;
-    align-items: center;
-    justify-items: center;
-    margin: 10px;
-}
-.rightcard{
-    text-align: right;
-    font-size: 19px;
-    font-weight: 700;
-}
-.condition{
-    color: #e9e8e8;
-}
-.card.new{
-    width: 13%;
-    display: flex;
     flex-direction: column;
+    text-align: right;
     justify-content: center;
 }
-.card.new .head{
-    font-size: 19px;
+.leftcardinner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 32px;
 }
-.card.new .val{
-    font-size: 28px;
-    font-weight: 600;
+.condition{
+    color: #3c3939;
+}
+.card.new{
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: start;
 }
 .highlights{
-    margin-top: 16px;
+    height: 400px;
+    overflow-y: auto;
+}
+@media screen and (max-width: 768px){
+    .highlights{
+        min-height: 60vh;
+    }
+    .locationCards{
+        min-height: 60vh;
+    }
+    .rain{
+        min-height: 60vh;
+    }
+    .days .day{
+        flex-direction: column;
+    }
+    .days .day .temp{
+        padding: 10px 0 !important;
+    }
+    .forecast{
+        height: 400px;
+    }
 }
 .highlights h3{
+    font-size: 24px;
     margin-bottom: 13px;
 }
 .highlights .cards{
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
     gap: 20px;
-    margin-right: 19vw;
 }
-.highlights .child{
+.cards .child{
     border: 1px solid #cdcdcd;
     border-radius: 10px;
-    width: 5vw;
-    padding: 23px;
+    width: 150px;
+    height: 60px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     justify-content:space-between;
-    text-align: center;
+    align-items: center;
 }
 .cards .child.suntimings{
-    width: 17vw;
+    width: 300px;
 }
 .cards .child.suntimings .arrow{
     display: inline-flex;
@@ -138,148 +208,69 @@
 .cards .child .content{
     font-size: 16px;
     color: #929191;
-    margin-top: -24px;
-    text-align: left;
 }
 .cards .child .value{
     font-size: 20px;
     font-weight: 700;
-    margin-top: 4px;
-    margin-bottom: -12px;
 }
 .highlights .graph{
     border: 1px solid #cdcdcd;
     border-radius: 10px;
-    padding: 6px;
+    padding: 12px;
     margin-top: 9px;
-    height: 24vh;
-    width: 48vw;
 }
 .right{
-    position: absolute;
-    right: 0px;
     background-color: #ecf4ff;
-    height: 89vh;
-    width: 31vw;
 }
 .rain{
     border-bottom: 5px solid #cdcdcd;
-    padding-top: 1px;
-    padding-left: 10px;
-    margin-bottom: 4px;
+    padding:30px;
+    height: 400px;
+    overflow-y: auto;
 }
 .forecast{
-    padding-top: 2px;
-    padding-left: 10px;
+    margin-top: 40px;
 }
-.forecast .days{
+.days{
     display: flex;
     flex-direction: column;
-    gap: 35px;
-    padding-top: 6px;
-    padding-right: 30px;
-    padding-left: 30px;
+    justify-content: space-around;
+    height: 300px;
 }
 .forecast .days .day{
     display:flex ;
     justify-content: space-between;
-    border: 0.4px solid black;
-    border-radius: 4px;
-    height: 50px;
-    width: 22vw;
-    padding: 4px;
+    border: 1px solid black;
+    border-radius: 16px;
 }
 .forecast .days .day .weatherimg{
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
-    margin-top: -4px;
-    margin-right: -16px;
 }
 .forecast .days .day .weatherimg img{
-    width: 100%;
-    height: 100%;
+    height: 65px;
 }
 .forecast .days .day .date{
     display: flex;
     flex-direction: column;
-    font-size: 14px;
-    padding: 6px;
+    font-size: 18px;
+    padding: 0 10px 0 0;
     font-weight: normal;
 }
 .forecast .days .day .date .inner{
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
 }
 .forecast .days .day .temp{
     display: flex;
     align-items: center;
+    justify-items: space-between;
     background-color: #8f1de1d7;
-    border-radius: 6px;
-    padding: 30px;
-    margin: -4px;
+    border-radius: 16px;
+    padding: 0 4px;
 }
-.forecast .days .day .temp i{
-    margin-left: 10px;
-}
-.leftbar{
-    position: fixed;
-    width: 244px;
-    height: 100vh;
-    background-color: #0a2a59;
-}
-.leftbar ul{
-    font-size: 20px;
-    position: absolute;
-    top: 100px;
-    left: 0;
-    width: 100%;
-}
-.leftbar ul li{
-    list-style: none;
-    margin-bottom: 40px;
-}
-.blank{
-    width: 6px;
-    height: 40px;
-    display: block;
-    margin-right: 28px;
-    margin-left: -30px;
-}
-.leftbar a{
+.forecast .days .day .temp .arrw{
     display: flex;
-    align-items: center;
-    color: #cdcdcd;
-    text-decoration: none;
-    padding-left: 30px;
-}
-.leftbar a:hover{
-    color: #fff;
-    background-color: #e5e5e548;
-}
-.leftbar a:hover .blank{
-    background-color: #fff;
-}
-.leftbar .active{
-    color: #fff;
-    background-color: #e5e5e548;
-}
-.leftbar .active .blank{
-    background-color: #fff;
-}
-.leftbar ul:hover .active{
-    color: #cdcdcd !important;
-    background-color: #0a2a59;
-}
-.leftbar ul:hover .active .blank{
-    background-color: #0a2a59 !important;
-}
-.leftbar ul li:nth-child(3):hover .active{
-    color: #fff !important;
-    background-color: #e5e5e548 !important;
-}
-.leftbar ul li:nth-child(3):hover .blank{
-    background-color: #fff !important;
+    justify-content: space-around;
+    padding: 0 5px;
 }
