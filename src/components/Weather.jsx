@@ -7,7 +7,7 @@ function Weather(){
     const[activeImg,setActiveimg]=useState(null);
     const[weatherImg,setWeatherimg]=useState('https://s7d2.scene7.com/is/image/TWCNews/clouds_from_above');
     const[city,setCity]=useState(null);
-    const[search,setSearch]=useState('Kolkata');
+    const[search,setSearch]=useState('');
     const[hourlyData,setHourlyData]=useState(null);
     const[tridayData,setTridayData]=useState(null);
     const inp=useRef(null);
@@ -46,13 +46,13 @@ function Weather(){
                     // console.log(triday);
                 }
                 let weatherQuery='';
-                console.log(city.current.is_day);
+                // console.log(city.current.is_day);
                 if(city.current.is_day!=null){
                     if(city.current.is_day===0)
                         weatherQuery='midnight sky';
                     else
                         weatherQuery='day';
-                    console.log(weatherQuery);
+                    // console.log(weatherQuery);
                     client.photos.search({query:weatherQuery,per_page:1,orientation}).then(photos=>{
                         // console.log(photos.photos[0].src.large);
                         setWeatherimg(photos.photos[0].src.large);

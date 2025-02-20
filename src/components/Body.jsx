@@ -2,6 +2,7 @@ import { useState } from "react";
 import Highlights from "./Highlights";
 import RainCaller from "./RainCaller";
 import Home from "./Home";
+import { DotLottiePlayer } from "@dotlottie/react-player";
 
 export default function Body({city,image,weatherImg,hourlyData,tridayData}){
     
@@ -9,7 +10,14 @@ export default function Body({city,image,weatherImg,hourlyData,tridayData}){
     return(
         <div className="body">
             {!city ? (
-                <>Data not present</>
+                <div className="lott">
+                    <DotLottiePlayer
+                        loop
+                        src='/na.lottie'
+                        autoplay
+                        style={{ width: "500px", height: "100%" }}
+                    />
+                </div>
             ) : (
                 <div className="main">
                         <div className="btns">
