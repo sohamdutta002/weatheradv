@@ -8,8 +8,8 @@ import {
     Tooltip,
     Legend
 } from 'chart.js';
-import { callback } from 'chart.js/helpers';
-import { intersect, mode } from 'mathjs';
+// import { callback } from 'chart.js/helpers';
+// import { intersect, mode } from 'mathjs';
 
 import { Line } from 'react-chartjs-2';
 

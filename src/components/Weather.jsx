@@ -1,9 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {createClient} from "pexels";
 import './css/styles.css'
-import Navbar from './Navbar';
 import Body from './Body';
-import Leftbar from './Leftbar';
 
 function Weather(){
     const[activeImg,setActiveimg]=useState(null);
@@ -15,8 +13,9 @@ function Weather(){
     const inp=useRef(null);
     useEffect(()=>{
         const fetchApi=async ()=>{
-            const Api_keyW='77dcdd1ce333466487d140819231809';
-            const Api_keyImg='4qPlxbEd2pSbR7nWwBnhcCLyCS9i8qJ8S72q9YfYFxPJ6tjmyh8KgSja';
+            const Api_keyW=process.env.REACT_APP_W;
+            const Api_keyImg=process.env.REACT_APP_IMG;
+            // console.log(Api_keyImg);
             const url=`https://api.weatherapi.com/v1/forecast.json?key=${Api_keyW}&q=${search}&days=3&aqi=yes&alerts=no`;
             const response=await(await fetch(url)).json();
             if(response.error){
