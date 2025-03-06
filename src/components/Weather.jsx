@@ -8,9 +8,35 @@ function Weather(){
     const[weatherImg,setWeatherimg]=useState('https://s7d2.scene7.com/is/image/TWCNews/clouds_from_above');
     const[city,setCity]=useState(null);
     const[search,setSearch]=useState('');
+    const[location,setLocation]=useState(null);
     const[hourlyData,setHourlyData]=useState(null);
     const[tridayData,setTridayData]=useState(null);
     const inp=useRef(null);
+    
+    useEffect(() => {
+      if("geolocation" in navigator){
+        navigator.geolocation.getCurrentPosition(async(position)=>{
+            const {latitude,longitude}=position.coords;
+            setLocation({latitude,longitude});
+            // console.log(location)
+            try{
+                const urlCord=`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=31aa276cc1764693451c7224ade1a3b0`;
+                const response=await fetch(urlCord).then(res=>res.json());
+                // console.log(response);
+                setSearch(response.name);
+            }catch(err){
+                console.log("Failed to fetch weather data"+err);
+            }
+        },(err)=>{
+            console.log("Error fetching location:"+err);
+        })
+      } else {
+        console.log("Geolocation is not supported by the browser.");
+      }
+    }, [])
+    
+    
+    
     useEffect(()=>{
         const fetchApi=async ()=>{
             const Api_keyW=process.env.REACT_APP_W;
@@ -23,6 +49,7 @@ function Weather(){
                 console.log(response.length);
                 return;
             }
+            console.log(search)
             setCity(response);
             const client=createClient(Api_keyImg);
             let query=search;
@@ -33,36 +60,38 @@ function Weather(){
                     setActiveimg(photos.photos[0].src.large);
             });
             // console.log(weatherImg);
-            let triday='';
-            if(city&&city.current){
-                if(city&&city.forecast){
-                    setHourlyData(city.forecast.forecastday[0].hour);
-                    // console.log(hourlyData);
-                    triday=city.forecast.forecastday.map(forecast=>({
-                        date:forecast.date,
-                        day:forecast.day
-                    }));
-                    setTridayData(triday);
-                    // console.log(triday);
-                }
-                let weatherQuery='';
-                // console.log(city.current.is_day);
-                if(city.current.is_day!=null){
-                    if(city.current.is_day===0)
-                        weatherQuery='midnight sky';
-                    else
-                        weatherQuery='day';
-                    // console.log(weatherQuery);
-                    client.photos.search({query:weatherQuery,per_page:1,orientation}).then(photos=>{
-                        // console.log(photos.photos[0].src.large);
-                        setWeatherimg(photos.photos[0].src.large);
-                    });
-                }
+            let weatherQuery='';
+            // console.log(city.current.is_day);
+            if(city?.current.is_day!=null){
+                if(city.current.is_day===0)
+                    weatherQuery='midnight sky';
+                else
+                    weatherQuery='day';
+                // console.log(weatherQuery);
+                client.photos.search({query:weatherQuery,per_page:1,orientation}).then(photos=>{
+                    // console.log(photos.photos[0].src.large);
+                    setWeatherimg(photos.photos[0].src.large);
+                });
             }
         };
         fetchApi();
-    },[search])
-
+    },[location,search])
+    useEffect(()=>{
+        let triday='';
+        if(city&&city.current){
+            if(city&&city.forecast){
+                setHourlyData(city.forecast.forecastday[0].hour);
+                // console.log(hourlyData);
+                triday=city.forecast.forecastday.map(forecast=>({
+                    date:forecast.date,
+                    day:forecast.day
+                }));
+                setTridayData(triday);
+                // console.log(triday);
+            }
+            
+        }
+    },[city])
 
     return(
         <div className="full" style={{background: `url(${weatherImg}) center/cover no-repeat`}}>
