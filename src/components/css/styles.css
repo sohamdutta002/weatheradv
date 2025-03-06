@@ -37,7 +37,6 @@
 }
 .searchcenter{
     display: flex;
-    gap: 2;
     justify-content: center;
     align-items: center;
 }
@@ -70,7 +69,8 @@
         height:90vh;
     }
     .search{
-        width: 80vw;
+        width: 60vw;
+        margin-left: -30px;
     }
 }
 .body{
