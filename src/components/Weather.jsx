@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import {createClient} from "pexels";
 import './css/styles.css'
 import Body from './Body';
+import { use } from "react";
 
 function Weather(){
     const[activeImg,setActiveimg]=useState(null);
@@ -18,6 +19,7 @@ function Weather(){
         navigator.geolocation.getCurrentPosition(async(position)=>{
             const {latitude,longitude}=position.coords;
             setLocation({latitude,longitude});
+            setSearch(location)
             // console.log(location)
             try{
                 const urlCord=`https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=31aa276cc1764693451c7224ade1a3b0`;
@@ -40,19 +42,26 @@ function Weather(){
     useEffect(()=>{
         const fetchApi=async ()=>{
             const Api_keyW=process.env.REACT_APP_W;
-            const Api_keyImg=process.env.REACT_APP_IMG;
             // console.log(Api_keyImg);
             const url=`https://api.weatherapi.com/v1/forecast.json?key=${Api_keyW}&q=${search}&days=3&aqi=yes&alerts=no`;
             const response=await(await fetch(url)).json();
             if(response.error){
                 setCity(null);
-                console.log(response.length);
+                // console.log(response.length);
                 return;
             }
-            console.log(search)
             setCity(response);
+            // console.log(search)
+            
+        };
+        if(search)  fetchApi();
+    },[search])
+
+    useEffect(()=>{
+        const fetchImg=async ()=>{
+            const Api_keyImg=process.env.REACT_APP_IMG;
             const client=createClient(Api_keyImg);
-            let query=search;
+            let query=city?.location.name;
             const orientation='landscape';
             client.photos.search({query,per_page:1,orientation}).then(photos=>{
                 // console.log(photos.photos[0].src.large);
@@ -68,14 +77,15 @@ function Weather(){
                 else
                     weatherQuery='day';
                 // console.log(weatherQuery);
-                client.photos.search({query:weatherQuery,per_page:1,orientation}).then(photos=>{
-                    // console.log(photos.photos[0].src.large);
-                    setWeatherimg(photos.photos[0].src.large);
+                client.photos.search({query:weatherQuery,per_page:2,orientation}).then(photos=>{
+                    // console.log(photos.photos[1].src.large);
+                    setWeatherimg(photos.photos[1].src.large);
                 });
             }
-        };
-        fetchApi();
-    },[location,search])
+        }
+        if(city) fetchImg();
+    },[city])
+    
     useEffect(()=>{
         let triday='';
         if(city&&city.current){
@@ -98,12 +108,12 @@ function Weather(){
             <div className='weather'>
                 <div className="searchcenter">
                     <div className="search">
-                        <input type="text" ref={inp} onKeyDown={(e)=>{
+                        <input type="text" id="inputext" ref={inp} onKeyDown={(e)=>{
                             if(e.key==='Enter'){
                                 setSearch(inp.current.value);
                             }
                         }} placeholder="Search here..."></input>
-                        <button onClick={()=>setSearch(inp.current.value)}><i className="fa-solid fa-magnifying-glass"></i></button>
+                        <div onClick={()=>setSearch(inp.current.value)}><i className="fa-solid fa-magnifying-glass"></i></div>
                     </div>
                 </div>
                 <Body city={city} image={activeImg} weatherImg={weatherImg} hourlyData={hourlyData} tridayData={tridayData}/>
